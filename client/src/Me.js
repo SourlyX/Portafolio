@@ -1,0 +1,74 @@
+import DownloadButton from "./DownloadButton"
+import React from 'react'
+import styled from 'styled-components'
+
+const LandingPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 1.5rem);
+  text-align: center;
+  padding: 20px;
+  color: #f5f5f5;
+  width: 90%;
+  border-bottom: 2px solid #55F5ED;
+`
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  top: 2.7rem;
+  right: 10px;
+  text-align: right;
+`
+
+const ProfileImage = styled.img`
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+`
+
+const Name = styled.h1`
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #55F5ED; /* Color turquesa para el nombre */
+`
+
+const Role = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #E61C4D; /* Color rojo para el rol */
+`
+
+const Introduction = styled.p`
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.5;
+  margin: 0 20px;
+`
+
+const LandingPage = () => {
+  const fileUrl = "/CV-LuisUrena.pdf"
+  const buttonText = "Download CV"
+
+  return (
+    <LandingPageContainer>
+      <ButtonContainer>
+        <DownloadButton text={buttonText} filePath={fileUrl} />
+      </ButtonContainer>
+      <ProfileImage src="/images/Luis.jpg" alt="Luis Ureña Arosemena" />
+      <Name>Luis Ureña Arosemena</Name>
+      <Role>Full-Stack Developer</Role>
+      <Introduction>
+        Hi! I'm a full-stack developer specialized in MERN stack projects. 
+        With a passion for creating robust and efficient web applications, 
+        I focus on delivering high-quality solutions using MongoDB, Express, 
+        React, and Node.js.
+      </Introduction>
+    </LandingPageContainer>
+  )
+}
+
+export default LandingPage
