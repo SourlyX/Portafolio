@@ -9,6 +9,7 @@ import PageNotFound from "./NotFound"
 import LandingPage from "./Me"
 import ToDoList from "./Todo/ToDoList"
 import Restarurante from "./Restaurante/Restaurante"
+import Pokedex from "./pokeapi/Pokedex"
 import "./index.css"
 import { Helmet } from "react-helmet"
 import { Routes, Route } from "react-router-dom"
@@ -229,6 +230,15 @@ function App() {
       integration. However, a connected version with a Node.js backend is currently under development to enable persistent storage and synchronization \
       across devices. This project reflects my focus on dynamic front-end design and will soon evolve with full-stack functionality.",
       url: "to-do-list"
+    },
+    {
+      image: "images/projects/pokedex.png",
+      title: "Pokedex",
+      description: "This project is a simple and functional To-Do List built with React. It allows users to create, edit, and delete tasks, offering \
+      a clean and intuitive interface for managing daily activities. The application stores tasks locally for now, ensuring usability even without backend \
+      integration. However, a connected version with a Node.js backend is currently under development to enable persistent storage and synchronization \
+      across devices. This project reflects my focus on dynamic front-end design and will soon evolve with full-stack functionality.",
+      url: "pokedex"
     }
   ]
 
@@ -273,6 +283,7 @@ function App() {
         <Route path="/projects/*" element={<Container cards={myProyects}  text={"Go to project"} title="Projects"/>} />
         <Route path="/projects/to-do-list" element={<ToDoList todos={todos} setTodos={setTodos}/>}/>
         <Route path="/projects/restaurante" element={<Restarurante/>}/>
+        <Route path="/projects/pokedex" element={<Pokedex/>}/>
       </Routes>
       <Contact id="contact" ref={contactRef} />
       <Footer />

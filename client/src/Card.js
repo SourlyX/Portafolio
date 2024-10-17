@@ -4,6 +4,7 @@ import Button from './Button'
 
 const Card = styled.div`
   width: 27%;
+  min-width: 175px;
   color: #E0E0E0;
   flex-grow: 1;
   background-color: #2C3E50;
