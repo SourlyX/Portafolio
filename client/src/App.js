@@ -234,10 +234,10 @@ function App() {
     {
       image: "images/projects/pokedex.png",
       title: "Pokedex",
-      description: "This project is a simple and functional To-Do List built with React. It allows users to create, edit, and delete tasks, offering \
-      a clean and intuitive interface for managing daily activities. The application stores tasks locally for now, ensuring usability even without backend \
-      integration. However, a connected version with a Node.js backend is currently under development to enable persistent storage and synchronization \
-      across devices. This project reflects my focus on dynamic front-end design and will soon evolve with full-stack functionality.",
+      description: "This project is a Pokédex-style app built with React that uses the PokéAPI to display detailed information about various Pokémon. \
+      Users can browse, search, and explore stats, abilities, and types for each Pokémon in a responsive and visually appealing interface. The app \
+      focuses entirely on front-end functionality, fetching data dynamically from the API. It showcases my ability to work with external APIs and create \
+      interactive user experiences.",
       url: "pokedex"
     }
   ]
