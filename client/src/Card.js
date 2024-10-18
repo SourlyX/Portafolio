@@ -1,8 +1,10 @@
+// Card.js
+
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Button from './Button'
 
-const Card = styled.div`
+const StyledCard = styled.div` // Renombramos aquí
   width: 27%;
   min-width: 175px;
   color: #E0E0E0;
@@ -17,6 +19,15 @@ const Card = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: relative;
+  transition: opacity 0.3s;
+
+  ${({ inDevelopment }) =>
+    inDevelopment &&
+    css`
+      opacity: 0.6;
+      pointer-events: none;
+    `}
 
   &:hover {
     background-color: #34495E;
@@ -46,21 +57,44 @@ const CardDescription = styled.div`
   color: #E0E0E0;
 `
 
-function Cards({ cards, text }) {
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+
+  ${({ inDevelopment }) =>
+    inDevelopment &&
+    css`
+      opacity: 1;
+    `}
+`
+
+function Cards({ title, description, image, url, inDevelopment, text }) {
   return (
-    <>
-      {cards.map((card, index) => (
-        <Card key={index}>
-          <CardDescription>
-            <CardTitle>{card.title}</CardTitle>
-            <p>{card.description}</p>
-            {card.url && <Button url={card.url} text={text}/>}
-          </CardDescription>
-          <CardImage src={card.image} alt="Project" />
-        </Card>
-      ))}
-    </>
+    <StyledCard inDevelopment={inDevelopment}> {/* Usamos StyledCard */}
+      <CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <p>{description}</p>
+        {url && <Button url={url} text={text} />}
+      </CardDescription>
+      <CardImage src={image} alt="Project" />
+      <Overlay inDevelopment={inDevelopment}>
+        Currently in development
+      </Overlay>
+    </StyledCard>
   )
 }
 
-export default Cards;
+export default Cards
