@@ -29,11 +29,18 @@ function Container({ cards, title, text }) {
     <>
       <Title>{title}</Title>
       <CardContainer>
-        <Cards
-          cards={cards}
-          text={text}
-          style={{ width: cards.url ? '50%' : 'auto' }}/>
-        </CardContainer>
+        {cards.map((card, index) => (
+          <Cards
+            key={index}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+            url={card.url}
+            inDevelopment={card.inDevelopment}
+            text={text}
+          />
+        ))}
+      </CardContainer>
     </>
   )
 }

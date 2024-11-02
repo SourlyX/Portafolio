@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Axios from 'axios'
 import Layout from './components/Layout'
-import Navbar from './components/Navbar';
-import Menu from './components/Menu';
+import Navbar from './components/Navbar'
+import Menu from './components/Menu'
 
 class Restarurante extends Component {
 

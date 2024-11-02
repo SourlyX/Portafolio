@@ -9,6 +9,7 @@ import PageNotFound from "./NotFound"
 import LandingPage from "./Me"
 import ToDoList from "./Todo/ToDoList"
 import Restarurante from "./Restaurante/Restaurante"
+import Pokedex from "./pokeapi/Pokedex"
 import "./index.css"
 import { Helmet } from "react-helmet"
 import { Routes, Route } from "react-router-dom"
@@ -213,13 +214,14 @@ function App() {
 
   const myProyects = [
     {
-      image: "images/projects/restarurant.jpeg",
+      image: "images/projects/development.jpeg",
       title: "Restaurant",
       description: "This project is a restaurant management app built with React, designed to assist waiters in taking customer orders efficiently. \
       The app allows staff to add orders directly to the order list, streamlining the ordering process. It is connected to a Node.js backend, ensuring \
       real-time updates between the front and back end (In menu items, for example). However, some functionalities, like saving completed orders, are \
       still under development. This project highlights my skills in building responsive front-end applications with backend integration to improve day-to-day operations.",
-      url: "restaurante"
+      url: "restaurante",
+      inDevelopment: true
     },
     {
       image: "images/projects/todo.png",
@@ -228,7 +230,18 @@ function App() {
       a clean and intuitive interface for managing daily activities. The application stores tasks locally for now, ensuring usability even without backend \
       integration. However, a connected version with a Node.js backend is currently under development to enable persistent storage and synchronization \
       across devices. This project reflects my focus on dynamic front-end design and will soon evolve with full-stack functionality.",
-      url: "to-do-list"
+      url: "to-do-list",
+      inDevelopment: false
+    },
+    {
+      image: "images/projects/development.jpeg",
+      title: "Pokedex",
+      description: "This project is a Pokédex-style app built with React that uses the PokéAPI to display detailed information about various Pokémon. \
+      Users can browse, search, and explore stats, abilities, and types for each Pokémon in a responsive and visually appealing interface. The app \
+      focuses entirely on front-end functionality, fetching data dynamically from the API. It showcases my ability to work with external APIs and create \
+      interactive user experiences.",
+      url: "pokedex",
+      inDevelopment: true
     }
   ]
 
@@ -273,6 +286,7 @@ function App() {
         <Route path="/projects/*" element={<Container cards={myProyects}  text={"Go to project"} title="Projects"/>} />
         <Route path="/projects/to-do-list" element={<ToDoList todos={todos} setTodos={setTodos}/>}/>
         <Route path="/projects/restaurante" element={<Restarurante/>}/>
+        <Route path="/projects/pokedex" element={<Pokedex/>}/>
       </Routes>
       <Contact id="contact" ref={contactRef} />
       <Footer />
