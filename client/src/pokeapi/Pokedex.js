@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import styled from "styled-components"
 import Axios from "axios"
 import CardContainer from "./CardContainer"
 
@@ -10,7 +9,7 @@ function Pokedex() {
     Axios.get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
       .then(response => {
         setPokemons(response.data.results)
-        console.log(response.data.results)
+        //console.log(response.data.results)
       })
       .catch(error => {
         console.error("Error fetching data:", error);
