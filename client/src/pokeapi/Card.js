@@ -64,7 +64,7 @@ const Pok = styled.img`
   }
 `
 
-function Card({ pokemon }) {
+function Card({ pokemon, EvolutionChain }) {
   const [evolutionChain, setEvolutionChain] = useState(null)
 
   useEffect(() => {
@@ -80,11 +80,9 @@ function Card({ pokemon }) {
       })
   }, [pokemon.species.url, pokemon.name])
 
-  useEffect(() => {
-    if (evolutionChain) {
-      console.log("Evolution Chain updated:", evolutionChain)
-    }
-  }, [evolutionChain])
+  if(pokemon.name === "aerodactyl"){
+    console.log(evolutionChain)
+  }
 
   return (
     <CardStyled>
