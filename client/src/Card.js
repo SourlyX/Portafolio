@@ -83,7 +83,7 @@ const Overlay = styled.div`
 
 function Cards({ title, description, image, url, inDevelopment, text }) {
   return (
-    <StyledCard inDevelopment={inDevelopment}> {/* Usamos StyledCard */}
+    <StyledCard inDevelopment={inDevelopment}>
       <CardDescription>
         <CardTitle>{title}</CardTitle>
         <p>{description}</p>
