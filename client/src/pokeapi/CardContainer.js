@@ -49,21 +49,44 @@ function CardContainer({ pokemons }) {
   }, [pokemons])
 
   const hasChain = (pokemonName) => {
-    var counter
-    for (counter = 0; counter < evolutionChain.length; counter++) {
-      if (evolutionChain[counter].chain.species.name === pokemonName || evolutionChain[counter].chain.evolves_to[0].species.name === pokemonName || evolutionChain[counter].chain.evolves_to[0].evolves_to[0].species.name === pokemonName) {
+    for (let counter = 0; counter < evolutionChain.length; counter++) {
+      const chain = evolutionChain[counter].chain
+  
+      // Caso 1: Si el Pokémon está en el nodo principal de la cadena
+      if (chain.species.name === pokemonName) {
+        console.log (evolutionChain[counter])
         return evolutionChain[counter]
-        break
+      }
+  
+      // Caso 2: Si hay múltiples evoluciones, buscar en evolves_to
+      for (let cantEv = 0; cantEv < chain.evolves_to.length; cantEv++) {
+        const evolution = chain.evolves_to[cantEv];
+  
+        // Si el Pokémon está en el nodo de la primera evolución
+        if (evolution.species.name === pokemonName) {
+          console.log(pokemonName)
+          return evolutionChain[counter]
+        }
+  
+        // Si el Pokémon está en el nodo de la segunda evolución
+        for (let mulEvo = 0; mulEvo < evolution.evolves_to.length; mulEvo++) {
+          if (evolution.evolves_to[mulEvo].species.name === pokemonName) {
+            return evolutionChain[counter]
+          }
+        }
       }
     }
-  }
+  
+    // Retornar null si no se encuentra la cadena
+    return null;
+  };
 
   return (
     <>
     <Title>Pokedex</Title>
     <Container>
       {detailedPokemons.map((pokemon, index) => (
-        <Card key={index} pokemon={pokemon} evolutionChain = {evolutionChain} />
+        <Card key={index} pokemon={pokemon} evolutionChain = {hasChain(pokemon.name)} />
       ))}
     </Container>
     </>
