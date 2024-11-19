@@ -65,9 +65,12 @@ const Pok = styled.img`
 `
 
 function Card({ pokemon, evolutionChain }) {
-  /*if (pokemon.name === "charmander") {
+  if (pokemon.name === "eevee"){
     console.log(evolutionChain)
-  }*/
+  }
+  if (pokemon.name === "charmander") {
+    console.log(evolutionChain)
+  }
 
   return (
     <CardStyled>
@@ -84,7 +87,5 @@ function Card({ pokemon, evolutionChain }) {
     </CardStyled>
   )
 }
-
-
 
 export default Card
