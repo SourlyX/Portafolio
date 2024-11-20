@@ -64,21 +64,13 @@ const Pok = styled.img`
   }
 `
 
-function Card({ pokemon, EvolutionChain }) {
-  const [evolutionChain, setEvolutionChain] = useState(null)
-
-  useEffect(() => {
-    Axios.get(`${pokemon.species.url}`)
-      .then(response => {
-        return Axios.get(`${response.data.evolution_chain.url}`)
-      })
-      .then(chain => {
-        setEvolutionChain(chain.data)
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error)
-      })
-  }, [pokemon.species.url, pokemon.name])
+function Card({ pokemon, evolutionChain }) {
+  if (pokemon.name === "eevee"){
+    console.log(evolutionChain)
+  }
+  if (pokemon.name === "charmander") {
+    console.log(evolutionChain)
+  }
 
   return (
     <CardStyled>
@@ -93,7 +85,7 @@ function Card({ pokemon, EvolutionChain }) {
         ))}
       </Stats>
     </CardStyled>
-  )  
+  )
 }
 
 export default Card

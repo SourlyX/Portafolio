@@ -27,48 +27,48 @@ function CardContainer({ pokemons }) {
     pokemons.forEach((pokemon) => {
       Axios.get(pokemon.url)
         .then(response => {
-          setDetailedPokemons(prevState => [...prevState, { name: pokemon.name, ...response.data }])
-          return Axios.get(`${response.data.evolution_chain.url}`)
+          setDetailedPokemons(prevState => [...prevState, { ...response.data }])
+          return Axios.get(response.data.species.url)
         })
-        .then(chain => {
-          var counter
-          var inside = false
-          for (counter = 0; counter < evolutionChain.length; counter++) {
-            if (evolutionChain[counter] === chain.data) {
-              inside = true
-              break
-            }
+        .then(speciesData => {
+          const evolutionUrl = speciesData.data.evolution_chain.url
+          return Axios.get(evolutionUrl)
+        })
+        .then(chainData => {
+          if (!evolutionChain.some(item => item.url === chainData.data.url)) {
+            setChain(prevState => [...prevState, chainData.data])
           }
-          if (!inside){ setChain(chain.data) }
-          setChain(chain.data)
         })
         .catch(error => {
-          console.error("Error fetching details for ${pokemon.name}: ", error)
+          console.error(`Error fetching details for ${pokemon.name}:`, error)
         })
     })
   }, [pokemons])
 
   const hasChain = (pokemonName) => {
-    var counter
-    for (counter = 0; counter < evolutionChain.length; counter++) {
-      if (evolutionChain[counter].chain.species.name === pokemonName || evolutionChain[counter].chain.evolves_to[0].species.name === pokemonName || evolutionChain[counter].chain.evolves_to[0].evolves_to[0].species.name === pokemonName) {
-        return evolutionChain[counter]
-        break
+    for (let chainData of evolutionChain) {
+      if (!chainData || !chainData.chain) continue
+
+      let currentChain = chainData.chain
+
+      while (currentChain) {
+        if (currentChain.species?.name === pokemonName) return chainData
+        currentChain = currentChain.evolves_to[0]
       }
     }
+    return null
   }
 
   return (
     <>
-    <Title>Pokedex</Title>
-    <Container>
-      {detailedPokemons.map((pokemon, index) => (
-        <Card key={index} pokemon={pokemon} evolutionChain = {hasChain(pokemon.name)} />
-      ))}
-    </Container>
+      <Title>Pokedex</Title>
+      <Container>
+        {detailedPokemons.map((pokemon, index) => (
+          <Card key={index} pokemon={pokemon} evolutionChain={hasChain(pokemon.name)} />
+        ))}
+      </Container>
     </>
   )
 }
-
 
 export default CardContainer
