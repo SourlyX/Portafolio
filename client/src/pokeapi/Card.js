@@ -80,13 +80,9 @@ function Card({ pokemon, EvolutionChain }) {
       })
   }, [pokemon.species.url, pokemon.name])
 
-  if(pokemon.name === "aerodactyl"){
-    console.log(evolutionChain)
-  }
-
   return (
     <CardStyled>
-      <Pok src="" alt={`${pokemon.name}`}></Pok>
+      <Pok src={pokemon.sprites.front_default} alt={`${pokemon.name}`}></Pok>
       <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
       <Stats>
         {pokemon.stats.map((stat, index) => (

@@ -63,7 +63,7 @@ function CardContainer({ pokemons }) {
     <Title>Pokedex</Title>
     <Container>
       {detailedPokemons.map((pokemon, index) => (
-        <Card key={index} pokemon={pokemon} evolutionChain = {evolutionChain} />
+        <Card key={index} pokemon={pokemon} evolutionChain = {hasChain(pokemon.name)} />
       ))}
     </Container>
     </>
