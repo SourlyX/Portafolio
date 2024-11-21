@@ -65,17 +65,15 @@ const Pok = styled.img`
 `
 
 function Card({ pokemon, evolutionChain }) {
-  if (pokemon.name === "eevee"){
-    console.log(evolutionChain)
-  }
-  if (pokemon.name === "charmander") {
+  if (pokemon.name === "abra"){
     console.log(evolutionChain)
   }
 
   return (
     <CardStyled>
-      <Pok src={pokemon.sprites.front_default} alt={`${pokemon.name}`}></Pok>
       <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+      <Pok src="" alt={`${pokemon.name}`}></Pok>
+      <h3>{"#" + pokemon.game_indices[3].game_index}</h3>
       <Stats>
         {pokemon.stats.map((stat, index) => (
           <div key={index}>
