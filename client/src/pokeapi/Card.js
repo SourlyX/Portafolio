@@ -64,9 +64,9 @@ const Pok = styled.img`
   }
 `
 
-function Card({ pokemon, evolutionChain }) {
-  if (pokemon.name === "abra"){
-    console.log(evolutionChain)
+function Card({ pokemon, evolutionChain, pokemonEvolutions }) {
+  if (pokemon.name === "eevee"){
+    console.log(pokemon.name, evolutionChain)
   }
 
   return (

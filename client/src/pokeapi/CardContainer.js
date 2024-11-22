@@ -99,7 +99,7 @@ function CardContainer({ pokemons }) {
 
         const detailedData = await Promise.all(detailedDataPromises)
 
-        // Filtramos Pokémon únicos y ordenamos por índice
+        // Remueve todos los Pokémon duplicados
         const uniquePokemons = detailedData.filter((pokemon, index, self) => {
           const gameIndex = pokemon.game_indices[3]?.game_index || 0
           return (
@@ -113,17 +113,19 @@ function CardContainer({ pokemons }) {
 
         setDetailedPokemons(uniquePokemons)
 
-        // Obtenemos las cadenas evolutivas
+        // Obtiene todas las cadenas evolutivas
         const chainPromises = uniquePokemons.map(async (pokemon) => {
           const speciesResponse = await Axios.get(pokemon.species.url)
-          return speciesResponse.data
+          const chainsResponse = await Axios.get(speciesResponse.data.evolution_chain.url)
+          return chainsResponse.data
         })
 
         const chains = await Promise.all(chainPromises)
 
-        const uniqueChains = chains.filter((chain, index, self) =>
-          self.findIndex(c => c.evolution_chain.url === chain.evolution_chain.url) === index
-        )
+        // Remueve todas las cadenas evolutivas repetidas
+        const uniqueChains = chains.filter((chain, index, self) => {
+          return self.findIndex(c => c.chain.species.name === chain.chain.species.name)
+        })
 
         setChain(uniqueChains)
 
@@ -142,7 +144,7 @@ function CardContainer({ pokemons }) {
           ))
 
           return (
-            <Card key={pokemon.id} pokemon={pokemon} evolutionChain={relatedCards} />
+            <Card key={pokemon.id} pokemon={pokemon} evolutionChain={chainData} pokemonEvolutions={relatedPokemons} />
           )
         })
 
@@ -156,8 +158,7 @@ function CardContainer({ pokemons }) {
   }, [pokemons])
 
   const hasChain = (pokemonName, chains) => {
-    for (let chainData of chains) {
-      if (!chainData || !chainData.chain) continue
+    for (var chainData of chains) {
 
       let currentChain = chainData.chain
 
