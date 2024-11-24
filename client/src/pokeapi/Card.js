@@ -64,32 +64,16 @@ const Pok = styled.img`
   }
 `
 
-function Card({ pokemon }) {
-  const [evolutionChain, setEvolutionChain] = useState(null)
-
-  useEffect(() => {
-    Axios.get(`${pokemon.species.url}`)
-      .then(response => {
-        return Axios.get(`${response.data.evolution_chain.url}`)
-      })
-      .then(chain => {
-        setEvolutionChain(chain.data)
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error)
-      })
-  }, [pokemon.species.url, pokemon.name])
-
-  useEffect(() => {
-    if (evolutionChain) {
-      console.log("Evolution Chain updated:", evolutionChain)
-    }
-  }, [evolutionChain])
+function Card({ pokemon, evolutionChain, pokemonEvolutions }) {
+  if (pokemon.name === "eevee"){
+    console.log(pokemon.name, evolutionChain)
+  }
 
   return (
     <CardStyled>
-      <Pok src="" alt={`${pokemon.name}`}></Pok>
       <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
+      <Pok src="" alt={`${pokemon.name}`}></Pok>
+      <h3>{"#" + pokemon.game_indices[3].game_index}</h3>
       <Stats>
         {pokemon.stats.map((stat, index) => (
           <div key={index}>
@@ -99,7 +83,7 @@ function Card({ pokemon }) {
         ))}
       </Stats>
     </CardStyled>
-  )  
+  )
 }
 
 export default Card
