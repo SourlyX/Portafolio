@@ -5,6 +5,18 @@ const { MongoClient } = require('mongodb');
 const cors = require('cors');
 require('dotenv').config();
 
+const path = require('path');
+
+// Sirve los archivos estáticos del frontend en producción
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
+
+
 const app = express();
 const uri = process.env.MONGODB_URI;
 
