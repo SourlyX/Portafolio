@@ -1,18 +1,17 @@
 {
   "scripts": {
-    "start": "concurrently \"npm start --prefix client\" \"npm run server --prefix server\"",
+    "start": "node server/index.js",
     "server": "nodemon index.js --prefix server",
     "client": "npm start --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "build": "npm run build --prefix client"
   },
-  "devDependencies": {
-    "concurrently": "^7.6.0",
-    "nodemon": "^3.1.7"
-  },
   "dependencies": {
     "dotenv": "^16.4.5",
     "concurrently": "^7.6.0",
     "http-proxy-middleware": "^3.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
