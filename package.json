@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "http-proxy-middleware": "^3.0.3",
+    "react-scripts": "^5.0.1",
     "dotenv": "^16.4.5"
   }
 }
