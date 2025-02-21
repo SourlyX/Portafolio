@@ -84,8 +84,6 @@ function Card({ pokemon, evolutionChain, pokemonEvolutions }) {
 
       if (matchingCard) {
         matchingCard.props.lvl = lvl // Asigna el nivel al card
-      } else {
-        //console.log(`No match found for: ${currentName}`)
       }
 
       // Si no hay evoluciones adicionales, termina
