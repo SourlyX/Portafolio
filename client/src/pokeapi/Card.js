@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import styled from "styled-components"
-import Axios from "axios"
 
 const CardStyled = styled.div`
   width: 20%;
@@ -65,14 +64,56 @@ const Pok = styled.img`
 `
 
 function Card({ pokemon, evolutionChain, pokemonEvolutions }) {
-  if (pokemon.name === "eevee"){
-    console.log(pokemon.name, evolutionChain)
+  const calculateEvolutionsWithLevels = () => {
+    // Crear una copia de pokemonEvolutions para asignar niveles
+    const evolutionsWithLevels = pokemonEvolutions.map(evolution => ({
+      ...evolution,
+      props: {
+        ...evolution.props,
+        lvl: null, // Inicializa lvl como null
+      },
+    }))
+
+    const assignLevels = (chain, lvl) => {
+      const currentName = chain.species.name.toLowerCase()
+
+      // Encuentra el Pokémon en pokemonEvolutions
+      const matchingCard = evolutionsWithLevels.find(
+        evolution => evolution.props.pokemon.name.toLowerCase() === currentName
+      )
+
+      if (matchingCard) {
+        matchingCard.props.lvl = lvl // Asigna el nivel al card
+      } else {
+        //console.log(`No match found for: ${currentName}`)
+      }
+
+      // Si no hay evoluciones adicionales, termina
+      if (!chain.evolves_to || chain.evolves_to.length === 0) {
+        return
+      }
+
+      // Incrementa el nivel y procesa las siguientes evoluciones
+      chain.evolves_to.forEach(nextChain => assignLevels(nextChain, lvl + 1))
+    }
+
+    // Comienza desde la raíz de la cadena con nivel 0
+    assignLevels(evolutionChain.chain, 0)
+
+    return evolutionsWithLevels
+  }
+
+  // Calcula las evoluciones con niveles
+  const evolutionsWithLevels = calculateEvolutionsWithLevels()
+  
+  if (pokemon.name === "pikachu") {
+    console.log(evolutionChain)
   }
 
   return (
     <CardStyled>
       <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
-      <Pok src="" alt={`${pokemon.name}`}></Pok>
+      <Pok src={/*pokemon.sprites.front_default*/ ""} alt={`${pokemon.name}`}></Pok>
       <h3>{"#" + pokemon.game_indices[3].game_index}</h3>
       <Stats>
         {pokemon.stats.map((stat, index) => (
