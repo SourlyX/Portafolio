@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Nav = styled.nav`
   position: fixed;
-  top: 0;
+  top: 1px;
   left: 0;
   z-index: 2147483647;
   background-color: #282C34;

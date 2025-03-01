@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Cards from './Card'
+import Cards from './Cards'
 
 const CardContainer = styled.div`
   justify-self: center;
@@ -13,6 +13,13 @@ const CardContainer = styled.div`
   background-color: #1F1F1F;
   border-radius: 8px;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    margin: 8px;
+  }
 `
 
 const Title = styled.h1`

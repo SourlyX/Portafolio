@@ -7,6 +7,7 @@ import About from "./About"
 import Contact from "./Contact"
 import PageNotFound from "./NotFound"
 import LandingPage from "./Me"
+import ScrollToTop from "./ScrollToTop"
 import ToDoList from "./Todo/ToDoList"
 import Restarurante from "./Restaurante/Restaurante"
 import Pokedex from "./pokeapi/Pokedex"
@@ -27,22 +28,9 @@ function App() {
 
   const contactRef = useRef(null)
 
-  const cards = [
-    {
-      image: "https://example.com/image1.jpg",
-      title: "Título de la tarjeta 1",
-      description: "Descripción de la tarjeta 1"
-    },
-    {
-      image: "https://example.com/image2.jpg",
-      title: "Título de la tarjeta 2",
-      description: "Descripción de la tarjeta 2"
-    }
-  ]
-  
   const frontendCards = [
     {
-      image: "images/skills/HTML5.png",
+      image: "images/skills/html5.png",
       title: "HTML5",
       description: "I use HTML5 to structure my web applications. It provides me with the foundation to create responsive, semantic, and accessible websites. By leveraging elements like <header>, <footer>, and <section>, I ensure my projects are both modern and organized."
     },
@@ -97,7 +85,6 @@ function App() {
       description: "I turn to MongoDB when I need a NoSQL solution for projects that require flexibility in data storage. I use it to manage large datasets and unstructured data, ensuring my applications can handle real-time, fast, and scalable operations."
     }
   ]
-  
 
   const softSkills = [
     {
@@ -136,7 +123,7 @@ function App() {
       description: "Keeping up with evolving technologies and constantly improving skills."
     },
     {
-      image: "images/softskills/curiosity.jpeg",
+      image: "images/softskills/curiosity.png",
       title: "Curiosity" ,
       description: "A natural desire to explore new technologies, tools, and methods to improve your craft."
     },
@@ -166,7 +153,7 @@ function App() {
       description: "Clear and concise verbal and written communication with both technical and non-technical stakeholders."
     },
     {
-      image: "images/softskills/patience.jpeg",
+      image: "images/softskills/patience.png",
       title: "Patience" ,
       description: "Remaining calm and persistent when debugging or facing challenges."
     },
@@ -201,7 +188,7 @@ function App() {
       description: "Actively paying attention to others' ideas, concerns, and feedback, ensuring better collaboration and understanding."
     },
     {
-      image: "images/softskills/Networking.jpeg",
+      image: "images/softskills/networking.png",
       title: "Networking" ,
       description: "Building professional relationships within and outside the company to share knowledge, seek guidance, and explore new opportunities."
     },
@@ -234,14 +221,14 @@ function App() {
       inDevelopment: false
     },
     {
-      image: "images/projects/development.jpeg",
+      image: "images/projects/Pokedex.png",
       title: "Pokedex",
       description: "This project is a Pokédex-style app built with React that uses the PokéAPI to display detailed information about various Pokémon. \
       Users can browse, search, and explore stats, abilities, and types for each Pokémon in a responsive and visually appealing interface. The app \
       focuses entirely on front-end functionality, fetching data dynamically from the API. It showcases my ability to work with external APIs and create \
       interactive user experiences.",
       url: "pokedex",
-      inDevelopment: true
+      inDevelopment: false
     }
   ]
 
@@ -255,14 +242,11 @@ function App() {
   const [todos, setTodos] = useState([
     {name: "Something", active: true},
     {name: "Something 2", active: true},
-    {name: "Supercalifragilisticexpialidocious", active: false},
-    {name: "Even though the sound of it is something quite atrocious", active: false},
     {name: "buy hotcakes", active: true},
     {name: "Go to the supermarket", active: true},
     {name: "Buy more hotcakes", active: true},
     {name: "Fly like superman", active: true},
     {name: "Buy some eggos", active: true},
-    {name: "Uyy muchachos, ustedeh ehcucharon el rempalago?", active: true},
   ])
   
   return (
@@ -273,6 +257,7 @@ function App() {
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
       </Helmet>
       <Navbar items={navbarItems} contactRef={contactRef} />
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={
           <>
@@ -289,7 +274,7 @@ function App() {
         <Route path="/projects/pokedex" element={<Pokedex/>}/>
       </Routes>
       <Contact id="contact" ref={contactRef} />
-      <Footer />
+      <Footer/>
     </MainApp>
   )
 }

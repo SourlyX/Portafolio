@@ -121,6 +121,7 @@ const ToDoList = ({ todos, setTodos }) => {
             style={{ height: "35px", borderRadius: "10px" }}
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && addTodo()}
           />
           <AddNew onClick={addTodo}>Add To-Do</AddNew>
         </NewTodo>

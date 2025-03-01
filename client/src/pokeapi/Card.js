@@ -104,14 +104,15 @@ function Card({ pokemon, evolutionChain, pokemonEvolutions }) {
   // Calcula las evoluciones con niveles
   const evolutionsWithLevels = calculateEvolutionsWithLevels()
   
-  if (pokemon.name === "pikachu") {
+  /*if (pokemon.name === "pikachu") {
     console.log(evolutionChain)
-  }
+    console.log(pokemon)
+  }*/
 
   return (
     <CardStyled>
       <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
-      <Pok src={/*pokemon.sprites.front_default*/ ""} alt={`${pokemon.name}`}></Pok>
+      <Pok src={pokemon.sprites.front_default} alt={pokemon.name}></Pok>
       <h3>{"#" + pokemon.game_indices[3].game_index}</h3>
       <Stats>
         {pokemon.stats.map((stat, index) => (

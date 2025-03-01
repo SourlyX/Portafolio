@@ -9,7 +9,6 @@ const GenericButton = styled.button`
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
 
   &:hover {
     background-color: #4AE5E0;
@@ -30,13 +29,13 @@ const Button = ({ url, filePath, text }) => {
       link.click()
       link.remove()
     }
-  };
+  }
 
   return (
     <GenericButton onClick={handleClick}>
       {text}
     </GenericButton>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button
